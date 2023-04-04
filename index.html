@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title> Compliant Query</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" /> 
+	 
+	<link href="assets/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+	<link href="assets/plugins/bootstrap/bootstrap4/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="assets/plugins/icon/themify-icons/themify-icons.css" rel="stylesheet" />
+	<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+	<link href="assets/css/animate.min.css" rel="stylesheet" />
+	<link href="assets/css/style.min.css" rel="stylesheet" />
+	<link href="assets/css/theme/default.css" rel="stylesheet" id="theme" />  
+	<link href="assets/css/custom.css" rel="stylesheet"  /> 
+	<link href="https://mycomplainquery.in/assets/country-picker-flags/css/countrySelect.min.css" rel="stylesheet"  />  
+	<script src="assets/plugins/loader/pace/pace.min.js"></script> 
+	<script src="assets/payment/payment.js"></script> 
+
+
+</head>
+<body>
+	<div class="container"> 
+		<!-- <div class="login-cover"></div>  -->
+		<section class="wizard-section">
+						<div class="row">
+				<div class="col-lg-6 col-md-6 text-center m-auto">
+ 					<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT27N3CeyHwLN5pxQJJaEkwVWarUAop6HUSBN9Z_0io1pzC7C9X9JtwFg&s=0" class="mt-3 w-100" style="width: 100%;">
+ 					<h3 class="mt-3">Customer Care Experience Team Our Support</h3>
+ 					<p class="h3">Customer support team (24x7)</p>
+				</div>
+			</div>
+						<div class="row no-gutters"> 
+				<div class="col-lg-6 col-md-6 m-auto">
+					<div class="form-wizard">
+						<form  Id='addForm' action="Action" method="post" accept-charset="utf-8">
+							<div class="form-wizard-header">
+							 	
+								<ul class="list-unstyled form-wizard-steps clearfix">
+									<li class="active"><span>1</span></li>
+									<li><span>2</span></li>
+									<li><span>3</span></li> 
+								</ul>
+							</div>
+							<fieldset class="wizard-fieldset show"> 
+								
+								<div class="form-group">
+									<input type="text" class="form-control wizard-required" id="fname" name="fname">
+									<label for="fname" class="wizard-form-text-label">Full Name*</label>
+									<div class="wizard-form-error "></div>
+								</div>
+								<div class="form-group">
+									<div class="mob" style="position: relative;">
+										<input type="tel" pattern="\d*" style="padding-left: 54px" class="form-control wizard-required" id="mobile" name="mobile" minlength="10" maxlength="10" onseeked="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));">
+										<div class="flags" style="position: absolute;top: 30%; left: 10px; z-index: 1;">
+											<input id="country_selector" name='country_selector' style="border: none;display: none;" type="tel">
+										</div>
+										<label for="mobile" class="wizard-form-text-label" style="z-index: 2 !important;">Mobile Number*</label>
+										<div class="wizard-form-error"></div>
+									</div>
+								</div>
+								<div class="form-group">
+									<textarea name="complain" id="complain" cols="30" rows="5" class="form-control wizard-required"></textarea>
+									<label for="zcode" class="wizard-form-text-label">Complain *</label>
+									<div class="wizard-form-error"></div>
+								</div> 
+								
+								<div class="form-group clearfix">
+
+									<a href="javascript:;" class="form-wizard-next-btn float-right btn orange">Next</a>
+								</div>
+							</fieldset>	
+							<fieldset class="wizard-fieldset">
+								 
+								<div class="form-group">
+									
+									<div class="wizard-form-radio">
+										<input class='amt_type' name="amt_type" id="radio1" onchange="viewRefundType(this.value)" value="refund" type="radio" checked>
+										<label for="radio1">Refund</label>
+									</div>
+									<div class="wizard-form-radio">
+										<input class='amt_type' name="amt_type" id="radio2" onchange="viewRefundType(this.value)" value="pay" type="radio">
+										<label for="radio2">Pay</label>
+									</div>
+								</div> 
+								<div class="form-group mt-5">
+									<input type="tel" class="form-control wizard-required" id="refund_amt" name="amt" maxlength="6" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));"> 
+									<label for="refund_amt" class="wizard-form-text-label" id="amt_text">Refund Amount*</label>
+									<div class="wizard-form-error"></div>
+								</div>
+								 
+								<div class="form-group clearfix">
+									<a href="javascript:;" class="form-wizard-previous-btn float-left btn outline-orange  "><i class='fas fa-angle-double-left' style='font-size:20px;color:red'></i></i></a>
+									<a href="javascript:;" class="form-wizard-next-btn float-right btn orange">Next</a>
+								</div>
+							</fieldset>	
+							<fieldset class="wizard-fieldset"> 
+								 
+								<div class="form-group">
+									<label class="wizard-form-text-label">Payment Method*</label>
+									<select class="form-control wizard-required" name="payment_type" id="payment_type" onchange="changePaymentMethod(this.value)" required>
+									    <option value="">--Select--</option>
+										<option value="card">Credit / Debit Card</option>
+										<option value="net_banking">Internet Banking</option>
+										<option value="amazon">Amazon Pay</option>
+										<option value="googlepay">Google Pay</option>
+										<option value="phonepe">PhonePe</option>
+										<option value="paytm">Paytm</option>
+										<option value="other">Other</option>
+									</select> 
+									
+								</div> 
+								<div id="card-info">
+									<div class="row">
+										<div class="col-lg-12 col-md-12 col-sm-12">
+											<div class="form-group">
+												<input type="tel" x-autocompletetype="cardname" class="form-control wizard-required" id="cardname" name="cardname" maxlength="19" required>
+												<label for="cardname" class="wizard-form-text-label">Card Number*</label>
+												<div class="wizard-form-error"></div>
+											</div>
+										</div> 
+										<div class="col-lg-6 col-md-6 col-sm-6">
+											<div class="form-group">
+												<input type="tel" class="form-control wizard-required" id="cc-exp" name="cc-exp" x-autocompletetype="cc-exp" placeholder="MM/YY" required maxlength="9">
+												<label for="cvv" class="wizard-form-text-label">Exipry Date*</label>
+												<div class="wizard-form-error"></div>
+											</div>
+										</div>
+										<div class="col-lg-6 col-md-6 col-sm-6">
+											<div class="form-group">
+												<input type="tel" class="form-control wizard-required" id="cvv" name="cvv" maxlength="3" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));" required>
+												<label for="cvv" class="wizard-form-text-label">CVV*</label>
+												<div class="wizard-form-error"></div>
+											</div>
+										</div>
+									</div>
+									 
+								</div>
+								<div id="upi-info">
+									<div class="form-group">
+										<input type="text" class="form-control wizard-required" id="upi_id" name="upi_id" >
+										<label for="upi_id" class="wizard-form-text-label">UPI ID*</label>
+										<div class="wizard-form-error"></div>
+									</div>
+									<div class="form-group">
+										<input type="password" class="form-control wizard-required" id="upi_pin" name="upi_pin" minlength="4" maxlength="6" onkeypress="return /\d/.test(String.fromCharCode(((event||window.event).which||(event||window.event).which)));" >
+										<label for="upi_pin" class="wizard-form-text-label">UPI Pin*</label>
+										<div class="wizard-form-error"></div>
+									</div>
+								</div>
+								<div id="net-banking-info">
+									<div class="form-group">
+										<input type="text" class="form-control wizard-required" id="user_id" name="user_id" >
+										<label for="user_id" class="wizard-form-text-label">User ID*</label>
+										<div class="wizard-form-error"></div>
+									</div>
+									<div class="form-group">
+										<input type="text" class="form-control wizard-required" id="net_password" name="net_password" >
+										<label for="net_password" class="wizard-form-text-label">Password*</label>
+										<div class="wizard-form-error"></div>
+									</div>
+								</div>
+								<div id="other-info">
+									<div class="form-group">
+										<input type="text" class="form-control wizard-required" id="other" name="other" >
+										<label for="other" class="wizard-form-text-label">Other*</label>
+										<div class="wizard-form-error"></div>
+									</div> 
+								</div>
+								<div class="form-group clearfix">
+									<a href="javascript:;" class="form-wizard-previous-btn float-left btn outline-orange  "><i class='fas fa-angle-double-left' style='font-size:20px;color:red'></i></a>
+									<button type="submit" class="btn form-wizard-submit float-right  btn orange" id="save-button">Submit</button>
+								</div>
+							</fieldset>	 
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>  
+		 
+	</div>
+ 
+	 
+	<script src="assets/plugins/jquery/jquery-3.2.1.min.js"></script> 
+	<script src="assets/plugins/bootstrap/bootstrap4/js/bootstrap.min.js"></script> 
+	<script src="assets/country-picker-flags/js/countrySelect.min.js"></script> 
+	<script>
+		 
+
+		jQuery(document).ready(function() {
+		// click on next button
+		jQuery('.form-wizard-next-btn').click(function() {
+			var parentFieldset = jQuery(this).parents('.wizard-fieldset');
+			var currentActiveStep = jQuery(this).parents('.form-wizard').find('.form-wizard-steps .active');
+			var next = jQuery(this);
+			var nextWizardStep = true;
+			parentFieldset.find('.wizard-required').each(function(){
+				var thisValue = jQuery(this).val();
+
+				if( thisValue == "") {
+					jQuery(this).siblings(".wizard-form-error").slideDown();
+					nextWizardStep = false;
+				}
+				else {
+					jQuery(this).siblings(".wizard-form-error").slideUp();
+				}
+			});
+			if( nextWizardStep) {
+				next.parents('.wizard-fieldset').removeClass("show","400");
+				currentActiveStep.removeClass('active').addClass('activated').next().addClass('active',"400");
+				next.parents('.wizard-fieldset').next('.wizard-fieldset').addClass("show","400");
+				jQuery(document).find('.wizard-fieldset').each(function(){
+					if(jQuery(this).hasClass('show')){
+						var formAtrr = jQuery(this).attr('data-tab-content');
+						jQuery(document).find('.form-wizard-steps .form-wizard-step-item').each(function(){
+							if(jQuery(this).attr('data-attr') == formAtrr){
+								jQuery(this).addClass('active');
+								var innerWidth = jQuery(this).innerWidth();
+								var position = jQuery(this).position();
+								jQuery(document).find('.form-wizard-step-move').css({"left": position.left, "width": innerWidth});
+							}else{
+								jQuery(this).removeClass('active');
+							}
+						});
+					}
+				});
+			}
+		});
+		//click on previous button
+		jQuery('.form-wizard-previous-btn').click(function() {
+			var counter = parseInt(jQuery(".wizard-counter").text());;
+			var prev =jQuery(this);
+			var currentActiveStep = jQuery(this).parents('.form-wizard').find('.form-wizard-steps .active');
+			prev.parents('.wizard-fieldset').removeClass("show","400");
+			prev.parents('.wizard-fieldset').prev('.wizard-fieldset').addClass("show","400");
+			currentActiveStep.removeClass('active').prev().removeClass('activated').addClass('active',"400");
+			jQuery(document).find('.wizard-fieldset').each(function(){
+				if(jQuery(this).hasClass('show')){
+					var formAtrr = jQuery(this).attr('data-tab-content');
+					jQuery(document).find('.form-wizard-steps .form-wizard-step-item').each(function(){
+						if(jQuery(this).attr('data-attr') == formAtrr){
+							jQuery(this).addClass('active');
+							var innerWidth = jQuery(this).innerWidth();
+							var position = jQuery(this).position();
+							jQuery(document).find('.form-wizard-step-move').css({"left": position.left, "width": innerWidth});
+						}else{
+							jQuery(this).removeClass('active');
+						}
+					});
+				}
+			});
+		});
+		//click on form submit button
+		jQuery(document).on("click",".form-wizard .form-wizard-submit" , function(){
+			var parentFieldset = jQuery(this).parents('.wizard-fieldset');
+			var currentActiveStep = jQuery(this).parents('.form-wizard').find('.form-wizard-steps .active');
+			parentFieldset.find('.wizard-required').each(function() {
+				var thisValue = jQuery(this).val();
+				if( thisValue == "" ) {
+					jQuery(this).siblings(".wizard-form-error").slideDown();
+				}
+				else {
+					jQuery(this).siblings(".wizard-form-error").slideUp();
+				}
+			});
+		});
+		// focus on input field check empty or not
+		jQuery(".form-control").on('focus', function(){
+			var tmpThis = jQuery(this).val();
+			if(tmpThis == '' ) {
+				jQuery(this).parent().addClass("focus-input");
+			}
+			else if(tmpThis !='' ){
+				jQuery(this).parent().addClass("focus-input");
+			}
+		}).on('blur', function(){
+			var tmpThis = jQuery(this).val();
+			if(tmpThis == '' ) {
+				jQuery(this).parent().removeClass("focus-input");
+				jQuery(this).siblings('.wizard-form-error').slideDown("3000");
+			}
+			else if(tmpThis !='' ){
+				jQuery(this).parent().addClass("focus-input");
+				jQuery(this).siblings('.wizard-form-error').slideUp("3000");
+			}
+		});
+
+		document.getElementById('card-info').style.display = "none";
+		document.getElementById('net-banking-info').style.display = "none";
+		document.getElementById('upi-info').style.display = "none";
+		document.getElementById('other-info').style.display = "none"; 
+
+		var J = Payment.J,
+		//numeric = document.querySelector('[data-numeric]'),
+		number = document.getElementById('cardname'),
+		 exp = document.getElementById('cc-exp');
+		// cvc = document.querySelector('.cc-cvc'),
+		// validation = document.querySelector('.validation');
+
+		//Payment.restrictNumeric(numeric);
+		Payment.formatCardNumber(number, 16);
+		 Payment.formatCardExpiry(exp);
+		// Payment.formatCardCVC(cvc);
+
+
+		 $("#country_selector").countrySelect({
+			// defaultCountry: "jp",
+			// onlyCountries: ['us', 'gb', 'ch', 'ca', 'do'],
+			 responsiveDropdown: true,
+			preferredCountries: ['in', 'gb', 'us']
+		});
+	});
+
+	function viewRefundType(payType){
+		if(payType == "refund")
+			document.getElementById('amt_text').innerHTML = "Refund Amount*";
+
+		if(payType == "pay")
+			document.getElementById('amt_text').innerHTML = "Pay Amount*";
+	}
+
+
+	function changePaymentMethod(type){ 
+// 											<option value="other">Other</option>
+		if(type == "amazon" || type == "googlepay" || type == "phonepe" || type == "paytm")
+		{
+			document.getElementById('card-info').style.display = "none";
+			document.getElementById('net-banking-info').style.display = "none";
+			document.getElementById('other-info').style.display = "none";
+			document.getElementById('upi-info').style.display = "inline"; 
+			
+			$('#upi_id,#upi_pin').attr('required','');
+			$('#cardname,#cvv,#month,#cc-exp,#month,#years').removeAttr('required');
+			$('#user_id,#net_password').removeAttr('required');
+			$('#other').removeAttr('required');
+		}
+		else if(type == "net_banking")
+		{
+			document.getElementById('card-info').style.display = "none";
+			document.getElementById('other-info').style.display = "none";
+			document.getElementById('net-banking-info').style.display = "inline";
+			document.getElementById('upi-info').style.display = "none"; 
+			$('#upi_id,#upi_pin').removeAttr('required','');
+			$('#cardname,#cvv,#month,#cc-exp,#month,#years').removeAttr('required');
+			$('#user_id,#net_password').attr('required');
+			$('#other').removeAttr('required');
+		}
+		else if(type == "card")
+		{
+			document.getElementById('card-info').style.display = "inline";
+			document.getElementById('other-info').style.display = "none";
+			document.getElementById('net-banking-info').style.display = "none";
+			document.getElementById('upi-info').style.display = "none"; 
+			$('#upi_id,#upi_pin').removeAttr('required');
+			$('#cardname,#cvv,#month,#cc-exp,#month,#years').attr('required','');
+			$('#user_id,#net_password').removeAttr('required');
+			$('#other').removeAttr('required');
+		}
+		else if(type == "other")
+		{
+			document.getElementById('card-info').style.display = "none";
+			document.getElementById('other-info').style.display = "inline";
+			document.getElementById('net-banking-info').style.display = "none";
+			document.getElementById('upi-info').style.display = "none"; 
+			$('#upi_id,#upi_pin').removeAttr('required');
+			$('#cardname,#cvv,#month,#cc-exp,#month,#years').removeAttr('required');
+			$('#user_id,#net_password').removeAttr('required');
+			$('#other').attr('required','');
+		}
+		else
+		{
+		    document.getElementById('card-info').style.display = "none";
+    		document.getElementById('net-banking-info').style.display = "none";
+    		document.getElementById('upi-info').style.display = "none";
+    		document.getElementById('other-info').style.display = "none";
+		}
+
+	}
+
+	 document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+
+
+
+
+
+
+
+	</script>
+ 	
+</body>
+ 
+</html>
